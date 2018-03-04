@@ -18,7 +18,7 @@ class Ork extends Character {
     } else if (!haveIEnergy) {
       console.log('How do you want to fight without energy?')
     } else if (!hasEnemyEnergy) {
-      console.log('How do you want to fight exhausted opponent?')
+      console.log('How do you want to fight with exhausted opponent?')
     } else {
       console.log(`Somehing went wrong:
       'amIAlive': ${amIAlive},
