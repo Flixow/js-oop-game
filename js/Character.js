@@ -52,4 +52,23 @@ class Character {
       }
     }, 1000)
   }
+
+  rest() {
+    let remainingTime = 1000
+    const trainingInterval = setInterval(() => {
+      remainingTime -= 1000
+
+      if (remainingTime === 0) {
+        this.energy += 10
+
+        console.log(`Congratulations! You've finished your resting.\nYour new properties are:
+        level: ${this.getLevel()},
+        exp: ${this.exp},
+        energy: ${this.energy}`)
+        clearInterval(trainingInterval)
+      } else {
+        console.log(`Resting. ${remainingTime / 1000}s left...`)
+      }
+    }, 1000)
+  }
 }
