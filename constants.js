@@ -19,4 +19,10 @@ const LEVEL_LIST = [
     level: 5,
     minExp: 800
   },
-]
+].reverse()
+
+const getLevelBasedOnExp = (exp) => {
+  const {level} = LEVEL_LIST.find(item => exp >= item.minExp)
+
+  return level
+}

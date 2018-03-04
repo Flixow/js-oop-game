@@ -7,9 +7,7 @@ class Character {
   }
 
   getLevel() {
-    const {level} = LEVEL_LIST.reverse().find(item => this.exp >= item.minExp)
-
-    return level
+    return getLevelBasedOnExp(this.exp)
   }
 
   training({mode}) {
@@ -32,36 +30,38 @@ class Character {
     }
 
     const modeData = modesData[mode]
-    // let remainingTime = modeData.time
-    let remainingTime = 1000 // Only for faster development
 
-    const trainingInterval = setInterval(() => {
-      remainingTime -= 1000
-
-      if (remainingTime === 0) {
-        this.energy -= modeData.energyCost
-        this.exp += modeData.exp
-
-        console.log(`Congratulations! You've finished your training.\nYour new properties are:
-        level: ${this.getLevel()},
-        exp: ${this.exp},
-        energy: ${this.energy}`)
-        clearInterval(trainingInterval)
-      } else {
-        console.log(`Training in ${mode} mode. ${remainingTime / 1000}s left...`)
-      }
-    }, 1000)
+    this.action({
+      time: 1000, // Only for faster development
+      attributesData: {
+        energy: -modeData.energyCost,
+        exp: modeData.exp,
+      },
+      type: 'training',
+    })
   }
 
   rest() {
-    let remainingTime = 1000
+    this.action({
+      time: 1000,
+      attributesData: {
+        energy: 10
+      },
+      type: 'resting',
+    })
+  }
+
+  action({time, attributesData, type}) {
+    let remainingTime = time
     const trainingInterval = setInterval(() => {
       remainingTime -= 1000
 
       if (remainingTime === 0) {
-        this.energy += 10
+        Object.entries(attributesData).forEach(([key, value]) => {
+          this[key] += value
+        })
 
-        console.log(`Congratulations! You've finished your resting.\nYour new properties are:
+        console.log(`Congratulations! You've finished your ${type}.\nYour new properties are:
         level: ${this.getLevel()},
         exp: ${this.exp},
         energy: ${this.energy}`)
