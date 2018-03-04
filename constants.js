@@ -26,3 +26,5 @@ const getLevelBasedOnExp = (exp) => {
 
   return level
 }
+
+const getRandomNumber = (from, to) => Math.floor(Math.random() * to + 1) + from - 1

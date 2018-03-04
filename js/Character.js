@@ -1,6 +1,6 @@
 class Character {
-  constructor({type}) {
-    this.type = type
+  constructor({name}) {
+    this.name = name
     this.exp = 0
     this.energy = 100
     this.health = 100
@@ -8,6 +8,14 @@ class Character {
 
   getLevel() {
     return getLevelBasedOnExp(this.exp)
+  }
+
+  isAlive() {
+    return this.health > 0
+  }
+
+  hasEnergy() {
+    return this.energy > 0
   }
 
   training({mode}) {
