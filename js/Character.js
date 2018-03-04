@@ -40,7 +40,7 @@ class Character {
     const modeData = modesData[mode]
 
     this.action({
-      time: 1000, // Only for faster development
+      time: modeData.time,
       attributesData: {
         energy: -modeData.energyCost,
         exp: modeData.exp,
@@ -49,11 +49,11 @@ class Character {
     })
   }
 
-  rest() {
+  rest(time = 1000) {
     this.action({
-      time: 1000,
+      time,
       attributesData: {
-        energy: 10
+        energy: 10 * time / 1000
       },
       type: 'resting',
     })
@@ -75,7 +75,7 @@ class Character {
         energy: ${this.energy}`)
         clearInterval(trainingInterval)
       } else {
-        console.log(`Resting. ${remainingTime / 1000}s left...`)
+        console.log(`${type.toUpperCase()}. ${remainingTime / 1000}s left...`)
       }
     }, 1000)
   }

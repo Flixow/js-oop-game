@@ -41,7 +41,7 @@ class Ork extends Character {
     enemy.health -= myInflictedDamage
     enemy.energy -= energyCost
 
-    console.log(`You ${didIWin ? 'win': 'lost'}!
+    console.log(`You ${didIWin ? 'win' : 'lost'}!
     Your damage: ${myInflictedDamage},
     Enemy damage: ${enemyInflictedDamage},
     Your health: ${this.health},

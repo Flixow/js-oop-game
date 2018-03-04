@@ -5,4 +5,4 @@ const enemyCharacter = new Ork({
   name: 'Enemy'
 })
 
-myCharacter.attack(enemyCharacter)
+// myCharacter.attack(enemyCharacter)
